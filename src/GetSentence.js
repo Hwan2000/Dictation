@@ -6,7 +6,7 @@ const GetSentence = () => {
   const [sentence, setSentence] = useState(
     {
       word:"",
-      corret:true,
+      correct:true,
     }
   );
 
@@ -18,11 +18,12 @@ const GetSentence = () => {
   }
 
   const onClick = () => {
-    setPutSentence([...putSentence,(sentence)])
+    setPutSentence([...putSentence,sentence])
     setSentence({
       word:"",
-      corret:true,
+      correct:true,
     })
+    
   }
 
   const onKeyPress = (e) => {
@@ -31,10 +32,25 @@ const GetSentence = () => {
     }
   }
 
+  const onPressEnter =(e) => {
+    if(e.key === "Enter") {
+      Enter();
+    }
+  }
+
+  const Enter = () => {
+    setSentence({...sentence, word:`n`})
+  }
+
+  const onRemove = () => {
+    setPutSentence(putSentence.filter(Sentence => Sentence.word !== " "));
+  }
+
   return (
     <div>
-      <input name = "word" onChange={onChange} onKeyUp={onKeyPress} value={sentence.word}></input>
+      <input name = "word" onChange={onChange} onKeyUp={onKeyPress} value={sentence.word} onKeyDown={onPressEnter}></input>
       <button onClick={onClick}>등록</button>
+      <button onClick={Enter}>줄바꿈</button>
       <ArraySentence putSentence={putSentence}/>
     </div>
   );
