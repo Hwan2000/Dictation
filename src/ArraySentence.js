@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Print = ({putSentence}) => {
-
-    return (
-        <>
-            <span style={{color:putSentence.color ? 'red' : 'green'}}>{putSentence.word}</span>
-        </>
-    )
-}
-
-const ArraySentence = ({putSentence}) => {
+const ArraySentence = ({putSentence, onToggle}) => {
 
     useEffect(() => console.log(putSentence),[putSentence])
 
@@ -17,8 +8,8 @@ const ArraySentence = ({putSentence}) => {
         <>
             <br/>
             <p>단어수 : {putSentence.length}</p>
-            {putSentence.map((putSentence, index) => (
-                <Print putSentence={putSentence} key={index}/>
+            {putSentence.map((putSentence) => (
+                <span style={{color: putSentence.correct ? "blue" : "red"}} key = {putSentence.id}>{putSentence.word}<button onClick={() => onToggle(putSentence.id)}>클릭</button></span>
             ))}
         </>
     );
