@@ -7,7 +7,7 @@ const ArraySentence = ({putSentence, onToggle}) => {
     return(
         <>
             <br/>
-            <p>단어수 : {putSentence.length-1}</p>
+            <br/>
             {putSentence.map((putSentence) => (
                 <span onClick = {() => onToggle(putSentence.id)}style={{color: putSentence.correct ? "blue" : "red"}} key = {putSentence.id}>{putSentence.word}</span>
             ))}
